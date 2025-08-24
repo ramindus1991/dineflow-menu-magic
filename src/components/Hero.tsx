@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 import heroImage from "@/assets/hero-restaurant.jpg";
+import ContactForm from "./ContactForm";
 
 const Hero = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -31,18 +35,19 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button variant="accent" size="lg" className="text-lg px-8 py-6">
-              Start Free Trial
+            <Button 
+              variant="accent" 
+              size="lg" 
+              className="text-lg px-8 py-6"
+              onClick={() => setIsContactOpen(true)}
+            >
+              Contact Us
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-6">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
             </Button>
           </div>
 
           <div className="text-primary-foreground/80 text-sm">
-            ✓ No setup fees  ✓ 14-day free trial  ✓ Cancel anytime
+            ✓ No setup fees  ✓ 6 months free trial  ✓ Full support included
           </div>
         </div>
       </div>
@@ -51,6 +56,8 @@ const Hero = () => {
       <div className="absolute top-20 left-10 w-20 h-20 bg-accent/20 rounded-full animate-float"></div>
       <div className="absolute bottom-20 right-10 w-16 h-16 bg-primary-glow/30 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-1/2 right-20 w-12 h-12 bg-accent-glow/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+
+      <ContactForm isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </section>
   );
 };

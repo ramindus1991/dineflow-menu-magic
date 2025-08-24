@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import ContactForm from "./ContactForm";
 
 const CTA = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <section className="py-20 bg-gradient-hero relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -14,19 +18,21 @@ const CTA = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button variant="accent" size="lg" className="text-lg px-8 py-6 shadow-glow">
-            Start Your Free Trial
+          <Button 
+            variant="accent" 
+            size="lg" 
+            className="text-lg px-8 py-6 shadow-glow"
+            onClick={() => setIsContactOpen(true)}
+          >
+            Contact Us
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <Button variant="glass" size="lg" className="text-lg px-8 py-6">
-            Schedule Demo
           </Button>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-primary-foreground/80">
           <div className="flex items-center">
             <CheckCircle className="h-5 w-5 mr-2 text-accent-glow" />
-            14-day free trial
+            6 months free trial
           </div>
           <div className="flex items-center">
             <CheckCircle className="h-5 w-5 mr-2 text-accent-glow" />
@@ -34,7 +40,7 @@ const CTA = () => {
           </div>
           <div className="flex items-center">
             <CheckCircle className="h-5 w-5 mr-2 text-accent-glow" />
-            Cancel anytime
+            Full support included
           </div>
         </div>
       </div>
@@ -42,6 +48,8 @@ const CTA = () => {
       {/* Background decorative elements */}
       <div className="absolute top-10 left-10 w-32 h-32 bg-accent-glow/20 rounded-full blur-xl"></div>
       <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary-glow/20 rounded-full blur-xl"></div>
+
+      <ContactForm isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </section>
   );
 };
